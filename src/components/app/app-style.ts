@@ -52,7 +52,7 @@ const GlobalStyle = createGlobalStyle<ThemeParameters>`
   @font-face {
     font-family: 'Montserrat';
     font-style: normal;
-    font-weight: 800;
+    font-weight: 700;
     src:  local('Montserrat'),
           url(${MontserratWoff2}) format('woff2'),
           url(${MontserratWoff}) format('woff');

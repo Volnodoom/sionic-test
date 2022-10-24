@@ -5,6 +5,7 @@ export const defaultTheme = {
     upperBase: '16px',
     medium: '20px',
     large: '37px',
+    extraLarge: '41px',
   },
   color: {
     white: '#FFFFFF',
@@ -21,11 +22,14 @@ export const defaultTheme = {
     yellow: '#FFA601',
   },
   width: {
-    page: '1366px',
+    page: '1370px',
     contentSection: '1015px',
     advertizement: '351px',
   },
   padding: {
-    button: '2px 10px'
+    button: '2px 10px',
+    pageLeft: '50px',
+    pageRight: '25px',
+    pageBetween: '50px',
   }
 } as const;
