@@ -24,9 +24,9 @@ export const defaultTheme = {
   width: {
     page: '1370px',
     contentSection: '960px',
-    advertizement: '351px',
+    advertizement: '327px',
   },
-  padding: {
+  margin: {
     button: '2px 10px',
     pageLeft: '50px',
     pageRight: '25px',
