@@ -6,3 +6,7 @@ export interface ButtonProps {
   $radius?: string,
   $border?: string,
 }
+
+export type CategoryProps = {
+  $numericCalor: 1 | 2 | 3 | 4,
+}

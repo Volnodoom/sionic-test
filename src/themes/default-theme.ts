@@ -23,7 +23,7 @@ export const defaultTheme = {
   },
   width: {
     page: '1370px',
-    contentSection: '1015px',
+    contentSection: '960px',
     advertizement: '351px',
   },
   padding: {

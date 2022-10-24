@@ -1,5 +1,5 @@
+import { Button } from 'components/styled';
 import styled from 'styled-components';
-import Button from 'components/ui/button/button';
 
 const Form = styled.form`
   display: flex;

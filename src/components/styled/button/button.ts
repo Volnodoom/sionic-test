@@ -15,7 +15,7 @@ const Button = styled.button<ButtonProps>`
   font-weight: 600;
 
   color: ${({ $color, theme }) => $color || theme.color.white};
-  background-color: ${({ $back, theme }) =>  $back || theme.font.white};
+  background-color: ${({ $back, theme }) =>  $back || theme.color.white};
   border: ${({ $border }) => $border || 'none'};
   border-radius: ${({ $radius }) => $radius || '40px'};
   cursor: pointer;
@@ -30,4 +30,4 @@ const Button = styled.button<ButtonProps>`
   }
 `;
 
-export { Button };
+export default Button;
