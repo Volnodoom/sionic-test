@@ -4,7 +4,7 @@ import Filtration from "./components/filtration/filtration";
 
 const Catalog = () => {
   return(
-    <S.ContentWrapper>
+    <S.ContentWrapper as="main">
       <S.MainTitle>Категории товаров</S.MainTitle>
       <S.SortingSettings>Настройки</S.SortingSettings>
 

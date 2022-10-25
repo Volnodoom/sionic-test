@@ -88,8 +88,7 @@ const GlobalStyle = createGlobalStyle<ThemeParameters>`
     background-color: ${({ theme }) => theme.color.white};
   }
 
-  img,
-  video {
+  img {
     display: block;
     max-width: 100%;
     height: auto;

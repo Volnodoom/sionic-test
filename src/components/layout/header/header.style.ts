@@ -4,7 +4,6 @@ import { setDimensions } from "utils/mixin";
 
 const Header = styled.header`
   display: flex;
-  padding-top: 20px;
   margin-bottom: 42px;
 
   width: 916px;

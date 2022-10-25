@@ -1,4 +1,7 @@
-export const defaultTheme = {
+import { DefaultParamsForTheme } from "types/global-types";
+
+// withoutPaddings - determine the width of pure content for the site. But excluded paddings for centering site info
+export const defaultTheme: DefaultParamsForTheme = {
   font: {
     small: '12px',
     base: '14px',
@@ -23,13 +26,15 @@ export const defaultTheme = {
   },
   width: {
     page: '1370px',
-    contentSection: '960px',
+    contentSection: '916px',
     advertizement: '327px',
+    withoutPaddings: '1293px'
   },
-  margin: {
+  padding: {
     button: '2px 10px',
     pageLeft: '50px',
     pageRight: '25px',
-    pageBetween: '50px',
+    pageBetween: '52px',
+    pageTop: '20px',
   }
-} as const;
+};

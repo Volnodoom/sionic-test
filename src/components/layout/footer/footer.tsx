@@ -5,10 +5,11 @@ import {ReactComponent as IconInst} from 'assets/img/svg/icon-inst.svg'
 import {ReactComponent as IconGoogle} from 'assets/img/svg/icon-google-play.svg'
 import {ReactComponent as IconApple} from 'assets/img/svg/icon-app-store.svg'
 import { P } from "components/styled";
+import { ClassNameProp } from "types/components";
 
-const Footer = () => {
+const Footer = (props: ClassNameProp) => {
   return(
-    <S.Footer>
+    <S.Footer className={props.className}>
       <S.LogoLike>React</S.LogoLike>
       <S.CheckResourcesBox>
         <div>

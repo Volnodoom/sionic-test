@@ -1,18 +1,28 @@
 import styled from "styled-components";
 import { setDimensions } from "utils/mixin";
 
+// const Wrapper = styled.div`
+//   display: flex;
+
+//   background-color: ${({ theme }) => theme.color.extremelyLightGray};
+// `;
+
 const Footer = styled.footer`
   position: relative;
-  width: ${({ theme }) => theme.width.page};
+  width: ${({ theme }) => theme.width.withoutPaddings};
   height: 215px;
+
+  margin: 0 auto;
+  flex-shrink: 0;
 
   background-color: ${({ theme }) => theme.color.extremelyLightGray};
 `;
 
 const LogoLike = styled.a`
+display: block;
 width: 123px;
 height: 50px;
-margin: 32px 0 0 50px;
+margin: 32px 0 0 0;
 
 font-family: 'Montserrat', Arial, sans-serif;
 font-weight: 700;
@@ -85,7 +95,7 @@ const SiteInfoAnchor = styled.a`
 
 const CheckResourcesBox = styled.div`
   position: absolute;
-  right: 123px;
+  right: 100px;
   top: 42px;
 
   display: flex;
@@ -103,4 +113,4 @@ export {
   Footer,
   SocialLink,
   AppLink,
-}
+};

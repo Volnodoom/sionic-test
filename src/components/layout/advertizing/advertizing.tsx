@@ -1,8 +1,9 @@
+import { ClassNameProp } from "types/components";
 import * as S from "./advertizing.style";
 
-const Advertizing = () => {
+const Advertizing = (props: ClassNameProp) => {
   return(
-    <S.ContentWrapper>
+    <S.ContentWrapper className={props.className}>
       <S.Offer />
       <S.AdvGalleryWrapper>
         <S.CardInfo1 href="/">

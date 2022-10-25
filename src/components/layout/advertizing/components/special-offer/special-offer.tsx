@@ -1,10 +1,7 @@
+import { ClassNameProp } from "types/components";
 import * as S from "./special-offer.style";
 
-type SpecialOfferProp = {
-  className?: string,
-}
-
-const SpecialOffer = (props: SpecialOfferProp) => {
+const SpecialOffer = (props: ClassNameProp) => {
   return(
     <S.ContentWrapper className={props.className}>
       <S.Slogan>Получай товары БЕСПЛАТНО!</S.Slogan>

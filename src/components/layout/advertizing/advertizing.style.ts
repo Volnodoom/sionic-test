@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { setDimensions, setFontValues } from "utils/mixin";
-import SpecialOffer from "../special-offer/special-offer";
+import SpecialOffer from "./components/special-offer/special-offer";
 import AdvOne from "assets/img/jpg/adv-1.jpg"
 import AdvTwo from "assets/img/jpg/adv-2.jpg"
 
