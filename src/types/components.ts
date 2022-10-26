@@ -14,3 +14,23 @@ export interface CategoryProps {
 export interface ClassNameProp {
   className?: string,
 }
+
+export interface ContentWrapperProps {
+  $bottom: string,
+}
+
+export interface MainTitleProps {
+  $bottom: string,
+}
+
+export interface InputNumberProps {
+  type: string,
+  max: number,
+  id: string,
+  name: string,
+};
+
+export interface BasketCardGridProps {
+  $isDetailsEmpty?: boolean,
+};
+

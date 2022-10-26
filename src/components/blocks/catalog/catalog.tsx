@@ -1,11 +1,12 @@
+import { ContentWrapper, MainTitle } from "components/styled";
 import * as S from "./catalog.style";
 import Card from "./components/card/card";
 import Filtration from "./components/filtration/filtration";
 
 const Catalog = () => {
   return(
-    <S.ContentWrapper as="main">
-      <S.MainTitle>Категории товаров</S.MainTitle>
+    <ContentWrapper $bottom="55">
+      <MainTitle $bottom="20">Категории товаров</MainTitle>
       <S.SortingSettings>Настройки</S.SortingSettings>
 
       <Filtration />
@@ -22,7 +23,7 @@ const Catalog = () => {
         <Card />
       </S.CardGallery>
       <S.ShowMoreButton>Показать больше товаров</S.ShowMoreButton>
-    </S.ContentWrapper>
+    </ContentWrapper>
   )
 }
 

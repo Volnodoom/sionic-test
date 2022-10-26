@@ -2,7 +2,7 @@ import { Button } from "components/styled";
 import { CatalogLabelColor } from "constants/components";
 import styled from "styled-components";
 import { CategoryProps } from "types/components";
-import { preventTextOverflow, setDimensions } from "utils/mixin";
+import { preventLineTextOverflow, setDimensions } from "utils/mixin";
 
 const CardBox = styled.div`
   position: relative;
@@ -15,16 +15,14 @@ const CardTitle = styled.h3`
   margin: 0 0 5px 0;
   order: 2;
 
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  ${preventLineTextOverflow()}
 
   font-size: ${({ theme }) => theme.font.base };
   font-weight: 400;
 `;
 
 const NewPrice = styled.span`
-  ${preventTextOverflow()}
+  ${preventLineTextOverflow()}
   margin-bottom: 5px;
   order: 3;
 

@@ -2,12 +2,6 @@ import { Button } from "components/styled";
 import styled from "styled-components";
 import { setDimensions } from "utils/mixin";
 
-const ContentWrapper = styled.div`
-  position: relative;
-  width: ${({ theme }) => theme.width.contentSection };
-  margin-bottom: 55px;
-`;
-
 const CardGallery = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -16,15 +10,6 @@ const CardGallery = styled.div`
   width: ${({ theme }) => theme.width.contentSection };
 
   margin-bottom: 30px;
-`;
-
-const MainTitle = styled.h2`
-  margin: 0;
-  margin-bottom: 20px;
-
-  font-size: ${({ theme }) => theme.font.medium };
-  line-height: 23px;
-  font-weight: 700;
 `;
 
 const SortingSettings = styled.span`
@@ -59,8 +44,6 @@ const ShowMoreButton = styled(Button).attrs((props) => ({
 `;
 
 export {
-  ContentWrapper,
-  MainTitle,
   SortingSettings,
   CardGallery,
   ShowMoreButton,

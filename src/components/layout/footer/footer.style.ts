@@ -1,11 +1,6 @@
+import { P } from "components/styled";
 import styled from "styled-components";
 import { setDimensions } from "utils/mixin";
-
-// const Wrapper = styled.div`
-//   display: flex;
-
-//   background-color: ${({ theme }) => theme.color.extremelyLightGray};
-// `;
 
 const Footer = styled.footer`
   position: relative;
@@ -37,7 +32,7 @@ text-decoration: none;
 &:active { color: ${({ theme }) => theme.color.darkBlack}; }
 `;
 
-const ClarificationParagraph = styled.p`
+const ClarificationParagraph = styled(P)`
   margin-bottom: 10px;
 
   font-size: ${({ theme }) => theme.font.upperBase};
@@ -64,7 +59,6 @@ const DownloadBox = styled.div`
 
   width: 228px;
 `;
-
 
 const AppLink = styled.a`
   display: block;

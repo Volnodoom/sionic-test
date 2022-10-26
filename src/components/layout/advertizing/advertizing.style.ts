@@ -17,6 +17,8 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: flex-end;
   width: ${({ theme }) => theme.width.advertizement };
+
+  padding-bottom: 20px;
 `;
 
 const Offer = styled(SpecialOffer)`
