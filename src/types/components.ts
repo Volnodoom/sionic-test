@@ -34,3 +34,14 @@ export interface BasketCardGridProps {
   $isDetailsEmpty?: boolean,
 };
 
+export interface DeliveryFieldsetParam {
+  $bottom?: string,
+}
+
+export interface DeliveryInputProps {
+  type?: string,
+}
+
+export interface DeliveryList {
+  isHidden?: boolean,
+}

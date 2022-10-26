@@ -1,10 +1,6 @@
-import { Button, ContentWrapper } from "components/styled";
+import { Button } from "components/styled";
 import styled from "styled-components";
 import { setDimensions, setFontValues } from "utils/mixin";
-
-const BasketWrapper = styled(ContentWrapper)`
-  min-height: 600px;
-`;
 
 const ResetButton = styled(Button).attrs(({ theme }) => ({
   type: 'button',
@@ -27,12 +23,8 @@ const BasketCatalog = styled.div`
   width: ${({ theme }) => theme.width.contentSection };
 
   border: ${({ theme }) => `1px solid ${theme.color.lightBlue}` };
-  border-radius: 0 0 20px;
+  border-radius: 0 0 20px 20px;
   border-top-style: none;
-
-  &:empty {
-    height: 450px;
-  }
 
   &::before,
   &::after {
@@ -54,7 +46,6 @@ const BasketCatalog = styled.div`
 `;
 
 export {
-  BasketWrapper,
   ResetButton,
   BasketCatalog,
 };
