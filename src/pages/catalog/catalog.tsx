@@ -1,7 +1,7 @@
 import { ContentWrapper, MainTitle } from "components/styled";
 import * as S from "./catalog.style";
-import Card from "./components/card/card";
-import Filtration from "./components/filtration/filtration";
+import Card from "../../components/blocks/card/card";
+import Filtration from "../../components/blocks/filtration/filtration";
 
 const Catalog = () => {
   return(
