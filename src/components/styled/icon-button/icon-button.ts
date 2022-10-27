@@ -13,8 +13,8 @@ const IconButton = styled.button.attrs<ButtonTypesProp>({
   cursor: pointer;
 
   &:focus,
-  &:hover > svg > path {
-    stroke: ${({ theme }) => theme.color.darkBlack }
+  &:hover  {
+    opacity: 0.5;
   }
 
   &:active > svg > path {
