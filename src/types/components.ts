@@ -49,3 +49,7 @@ export interface DeliveryList {
 export interface ButtonTypesProp {
   type: 'submit' | 'button',
 }
+
+export interface ModalProp {
+  isActive?: boolean,
+}

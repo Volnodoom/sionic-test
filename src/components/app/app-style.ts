@@ -170,6 +170,10 @@ const GlobalStyle = createGlobalStyle<ThemeParameters>`
 
     clip: rect(0 0 0 0);
   }
+
+  .scroll-lock {
+    overflow: hidden;
+  }
 `;
 
 export { GlobalStyle };
