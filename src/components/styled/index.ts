@@ -6,3 +6,4 @@ export { default as MainTitle } from "./text/main-title/main-title";
 export { default as ContentWrapper } from "./content-wrapper/content-wrapper";
 export { default as Ul } from "./ul/ul";
 export { default as Li } from "./li/li";
+export { default as IconButton } from "./icon-button/icon-button";

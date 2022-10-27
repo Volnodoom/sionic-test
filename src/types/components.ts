@@ -45,3 +45,7 @@ export interface DeliveryInputProps {
 export interface DeliveryList {
   isHidden?: boolean,
 }
+
+export interface ButtonTypesProp {
+  type: 'submit' | 'button',
+}

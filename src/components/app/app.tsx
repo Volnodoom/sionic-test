@@ -5,6 +5,7 @@ import PageWrapper from 'components/layout/page-wrapper/page-wrapper';
 import Basket from 'pages/basket/basket';
 import DeliveryForm from 'components/blocks/delivery-form/delivery-form';
 import Delivery from 'pages/delivery/delivery';
+import OrderCard from 'components/blocks/order-card/order-card';
 
 
 const App = () => {
@@ -12,7 +13,7 @@ const App = () => {
     <ThemeProvider theme={defaultTheme}>
       <S.GlobalStyle />
       <PageWrapper>
-        <Delivery />
+        <OrderCard />
       </PageWrapper>
     </ThemeProvider>
   );
