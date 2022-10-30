@@ -1,14 +1,36 @@
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
+import * as selector from "store/selectors/selector-catalog";
+import { CategoryType } from "types/global-types";
+import GeneralUtils from "utils/general-utils";
 import * as S from "./filtration.style";
 
 const Filtration = () => {
+  const categoryList = useSelector(selector.getCategory) as CategoryType[];
+
   return(
     <S.Form>
-      <S.Input $numericCalor={2} type="checkbox" name={'x1'} id={'x1'} />
-      <S.Label $numericCalor={2} htmlFor="x1">x1</S.Label>
-      <S.Input $numericCalor={4} type="checkbox" name={'x2'} id={'x2'} defaultChecked/>
-      <S.Label $numericCalor={4} htmlFor="x2">x2</S.Label>
-      <S.Input $numericCalor={2} type="checkbox" name={'x3'} id={'x3'} />
-      <S.Label $numericCalor={2} htmlFor="x3">x3</S.Label>
+      {
+        categoryList.map((line) => {
+          const randomNumber = GeneralUtils.getRandomColor(1, 4);
+          return (
+            <Fragment key={`${line.name}-${line.id}-input`}>
+              <S.Input
+                $numericCalor={randomNumber}
+                type="checkbox"
+                name={line.name}
+                id={`${line.name}-${line.id}`}
+              />
+              <S.Label
+                $numericCalor={randomNumber}
+                htmlFor={`${line.name}-${line.id}`}
+              >
+                {line.name}
+              </S.Label>
+            </Fragment>
+          )
+        })
+      }
     </S.Form>
   )
 }

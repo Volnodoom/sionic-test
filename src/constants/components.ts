@@ -1,5 +1,10 @@
 export const FORM_DELIVERY_ID = 'FORM_DELIVERY_ID';
 
+export const ColorRange = {
+  START: 1,
+  END: 4,
+}
+
 export const CatalogLabelColor = {
   1: 'blue',
   2: 'green',

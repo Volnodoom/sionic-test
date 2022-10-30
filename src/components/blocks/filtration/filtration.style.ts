@@ -1,6 +1,6 @@
 import { CatalogLabelColor } from "constants/components";
 import styled from "styled-components";
-import { CategoryProps } from "types/components";
+import { ColoRangeProps } from "types/components";
 
 const Form = styled.form`
   display: flex;
@@ -14,7 +14,7 @@ const Form = styled.form`
 const Input = styled.input.attrs({
   type: "checkbox",
   className: 'visually-hidden',
-})<CategoryProps>`
+})<ColoRangeProps>`
 
   &:checked + .filtration-checkbox {
     background-color: ${({ $numericCalor, theme }) =>  theme.color[CatalogLabelColor[$numericCalor]] };
@@ -22,7 +22,7 @@ const Input = styled.input.attrs({
   }
 `;
 
-const Label = styled.label.attrs({className: 'filtration-checkbox'})<CategoryProps>`
+const Label = styled.label.attrs({className: 'filtration-checkbox'})<ColoRangeProps>`
   padding: 2px 10px;
 
   border: ${({ $numericCalor, theme }) =>  `1px solid ${theme.color[CatalogLabelColor[$numericCalor]]}` };

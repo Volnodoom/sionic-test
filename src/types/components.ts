@@ -1,4 +1,4 @@
-export interface ButtonProps {
+export type ButtonProps = {
   $back?: string,
   $color?: string,
   $size?: string,
@@ -7,49 +7,56 @@ export interface ButtonProps {
   $border?: string,
 }
 
-export interface CategoryProps {
-  $numericCalor: 1 | 2 | 3 | 4,
-}
+type ParseInt<T extends `text${number}`> =
+  T extends any
+  ? (T extends `text${infer Digit extends number}`
+    ? Digit
+    : never)
+  : never
 
-export interface ClassNameProp {
+
+export type ColoRangeProps = { $numericCalor: ParseInt<"text1" | "text2" | "text3" | "text4">};
+export type ColorRange = ParseInt<"text1" | "text2" | "text3" | "text4">;
+
+export type ClassNameProp = {
   className?: string,
 }
 
-export interface ContentWrapperProps {
+export type ContentWrapperProps = {
   $bottom: string,
 }
 
-export interface MainTitleProps {
+export type MainTitleProps = {
   $bottom: string,
 }
 
-export interface InputNumberProps {
+export type InputNumberProps = {
   type: string,
   max: number,
   id: string,
   name: string,
 };
 
-export interface BasketCardGridProps {
+export type BasketCardGridProps = {
   $isDetailsEmpty?: boolean,
 };
 
-export interface DeliveryFieldsetParam {
+export type DeliveryFieldsetParam = {
   $bottom?: string,
 }
 
-export interface DeliveryInputProps {
+export type DeliveryInputProps = {
   type?: string,
 }
 
-export interface DeliveryList {
+export type DeliveryList = {
   isHidden?: boolean,
 }
 
-export interface ButtonTypesProp {
+export type ButtonTypesProp = {
   type: 'submit' | 'button',
 }
 
-export interface ModalProp {
+export type ModalProp = {
   isActive?: boolean,
 }

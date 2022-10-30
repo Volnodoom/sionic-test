@@ -1,7 +1,7 @@
 import { Button } from "components/styled";
 import { CatalogLabelColor } from "constants/components";
 import styled from "styled-components";
-import { CategoryProps } from "types/components";
+import { ColoRangeProps } from "types/components";
 import { preventLineTextOverflow, setDimensions } from "utils/mixin";
 
 const CardBox = styled.div`
@@ -83,7 +83,7 @@ const CategorySpanBlock = styled.div`
   overflow: hidden;
 `;
 
-const CategorySpan = styled.span<CategoryProps>`
+const CategorySpan = styled.span<ColoRangeProps>`
   padding: 2px 10px;
   border-radius: 41px;
 
