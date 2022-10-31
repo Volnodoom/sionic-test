@@ -47,7 +47,7 @@ const ModalOverlay = styled.div`
 
 const ModalContent = styled.div`
   position: relative;
-  width: 500px;
+  width: 600px;
   padding: 40px;
 
   border-radius: 4px;
@@ -100,7 +100,7 @@ const ProductVariationWrapper = styled.div`
 
 const ProductVariationLabel = styled.label`
   display: block;
-  padding: 5px 10px;
+  padding: 3px 5px;
 
   ${({ theme }) => setFontValues(theme.font.base, 20) };
   font-weight: 600;
@@ -125,6 +125,10 @@ const ProductWaring = styled(P)`
   margin-bottom: 15px;
   ${({ theme }) => setFontValues(theme.font.small, 16) };
   color: ${({ theme }) => theme.color.gray };
+`;
+
+const ProductDescription = styled(P)`
+  margin-bottom: 20px;
 `;
 
 const ProductPrice = styled.span`
@@ -171,4 +175,5 @@ export {
   ProductPrice,
   ButtonWrapper,
   AddToBasketButton,
+  ProductDescription,
 }

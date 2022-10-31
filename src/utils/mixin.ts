@@ -1,4 +1,4 @@
-import { TypeOfData } from "constants/general";
+import { TypeOfData } from "constants/general.const";
 
 export const setDimensions = (width: number, height?: number) => {
   if(height) {

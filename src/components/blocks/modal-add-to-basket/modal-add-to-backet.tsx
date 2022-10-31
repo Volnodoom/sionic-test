@@ -1,10 +1,35 @@
+import { Dispatch, useEffect, useRef } from "react";
 import * as S from "./modal-add-to-basket.style";
 
-const ModalAddToBasket = () => {
+type ModalAddToBasketProps = {
+  isModalActive: boolean,
+  setModal: Dispatch<React.SetStateAction<boolean>>,
+};
+
+const ModalAddToBasket = ({isModalActive, setModal}: ModalAddToBasketProps) => {
+  const scrollWidth = useRef<null | number>(null);
+
+  useEffect(() => {
+    if(isModalActive) {
+      document.body.classList.add('scroll-lock');
+      document.body.style.paddingRight = `${scrollWidth.current}px`
+    } else {
+      document.body.classList.remove('scroll-lock');
+      document.body.style.paddingRight = `0`;
+
+      const clientWidth = document.body.clientWidth;
+      const windowWidth = window.innerWidth;
+
+      scrollWidth.current = windowWidth - clientWidth;
+    }
+  })
+
+  const handleOverlayClick = () => setModal(false);
+
   return(
-    <S.Modal>
+    <S.Modal isActive={isModalActive}>
       <S.ModalWrapper>
-        <S.ModalOverlay></S.ModalOverlay>
+        <S.ModalOverlay onClick={handleOverlayClick}/>
         <S.ModalContent>
           <S.ModalHeaderTitle>Добавить товар в корзину</S.ModalHeaderTitle>
 
@@ -30,6 +55,7 @@ const ModalAddToBasket = () => {
               </S.ProductVariationWrapper>
 
               <S.ProductWaring>* необходимо выбрать вариацию товара для добавления продукта в корзину</S.ProductWaring>
+              <S.ProductDescription>Описание товара, что эьто такое и как им пользоваться фвафывафыва фывафып фыапф фы фаыпыафпф фыыпфыв</S.ProductDescription>
               <S.ProductPrice>Цена: 350 000 ₽ </S.ProductPrice>
             </S.ModalInfoDetailsWrapper>
           </S.ModalInfo>

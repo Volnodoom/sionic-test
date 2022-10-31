@@ -1,6 +1,6 @@
 import DeliveryForm from "components/blocks/delivery-form/delivery-form";
 import { ContentWrapper, MainTitle } from "components/styled";
-import { FORM_DELIVERY_ID } from "constants/components";
+import { FORM_DELIVERY_ID } from "constants/components.const";
 import * as S from "./delivery.style";
 
 const Delivery = () => {

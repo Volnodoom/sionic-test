@@ -1,4 +1,4 @@
-import { CatalogLabelColor } from "constants/components";
+import { CatalogLabelColor } from "constants/components.const";
 import styled from "styled-components";
 import { ColoRangeProps } from "types/components";
 

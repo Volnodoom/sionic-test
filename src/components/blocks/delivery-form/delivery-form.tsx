@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.min.css';
-import { FORM_DELIVERY_ID, TIME_PICKER_24_H } from "constants/components";
+import { FORM_DELIVERY_ID, TIME_PICKER_24_H } from "constants/components.const";
 import * as S from "./delivery-form.style";
 
 const DeliveryForm = () => {

@@ -1,7 +1,7 @@
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { defaultTheme } from 'themes/default-theme';
 import { ThemeProvider } from 'styled-components';
-import { AppRoutes } from 'constants/path-routes';
+import { AppRoutes } from 'constants/general.const';
 import * as S from './app-style';
 import PageWrapper from 'components/layout/page-wrapper/page-wrapper';
 import OrderHistory from 'pages/order-history/order-history';

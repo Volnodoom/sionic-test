@@ -16,7 +16,7 @@ export class Categories extends Model {
 
           if(!dataExist) {
             action.payload.forEach(piece => {
-              Categories.upsert(piece);
+              Categories.create(piece);
             });
           }
           break;

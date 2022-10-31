@@ -1,5 +1,5 @@
 import { Button } from "components/styled";
-import { CatalogLabelColor } from "constants/components";
+import { CatalogLabelColor } from "constants/components.const";
 import styled from "styled-components";
 import { ColoRangeProps } from "types/components";
 import { preventLineTextOverflow, setDimensions } from "utils/mixin";
@@ -71,6 +71,11 @@ const ProductInfoBox = styled.div`
   order: 1;
 `;
 
+const ProductImage = styled.img`
+  object-fit: cover;
+  ${setDimensions(214, 138)};
+`;
+
 const CategorySpanBlock = styled.div`
   position: absolute;
   left: 11px;
@@ -104,5 +109,6 @@ export {
   CardButton,
   CategorySpan,
   ProductInfoBox,
-  CategorySpanBlock
+  CategorySpanBlock,
+  ProductImage,
 }

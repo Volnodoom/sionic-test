@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
-import * as selector from "store/selectors/selector-catalog";
+import * as selector from "store/selectors/selectors";
 import { CategoryType } from "types/global-types";
 import GeneralUtils from "utils/general-utils";
 import * as S from "./filtration.style";
