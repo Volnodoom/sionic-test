@@ -1,12 +1,20 @@
-import { Fragment } from "react";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { Fragment, memo, useEffect } from "react";
 import { useSelector } from "react-redux";
-import * as selector from "store/selectors/selectors";
+import { fetchCategories } from "store/api-actions";
+import * as selector from "store/orm-modules-data/orm.selectors";
 import { CategoryType } from "types/global-types";
 import GeneralUtils from "utils/general-utils";
 import * as S from "./filtration.style";
 
 const Filtration = () => {
   const categoryList = useSelector(selector.getCategory) as CategoryType[];
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch])
 
   return(
     <S.Form>
@@ -35,4 +43,4 @@ const Filtration = () => {
   )
 }
 
-export default Filtration;
+export default memo(Filtration);

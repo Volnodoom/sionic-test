@@ -1,6 +1,6 @@
 import { Button, P } from "components/styled";
 import styled from "styled-components";
-import { ModalProp } from "types/components";
+import { InputModalProps, ModalProp } from "types/components";
 import { setDimensions, setFontValues } from "utils/mixin";
 
 const Modal = styled.div<ModalProp>`
@@ -67,6 +67,14 @@ const ModalInfo = styled.div`
   display: flex;
 `;
 
+const ModalImgBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  min-width: 100px;
+`
+
 const ModalImg = styled.img`
   display: block;
   ${setDimensions(100, 100)};
@@ -80,7 +88,7 @@ const ModalInfoDetailsWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
-const ProductTitle = styled.div`
+const ProductTitle = styled.h3`
   margin: 0 0 10px 0;
   padding: 0;
 
@@ -95,7 +103,7 @@ const ProductVariationWrapper = styled.div`
   flex-wrap: wrap;
   gap: 10px;
 
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 `;
 
 const ProductVariationLabel = styled.label`
@@ -114,7 +122,7 @@ const ProductVariationLabel = styled.label`
 const ProductVariationInput = styled.input.attrs({
   type: 'radio',
   className: 'visually-hidden',
-})`
+})<InputModalProps>`
   &:checked + ${ProductVariationLabel} {
     background-color: ${({ theme }) => theme.color.lightPink };
     border: ${({ theme }) => `1 solid ${theme.color.lightPink}` };
@@ -150,12 +158,40 @@ const AddToBasketButton = styled(Button).attrs({
   background-color: ${({ theme }) => theme.color.pink};
   border: ${({ theme }) => `1px solid ${theme.color.pink}`};
 
-  &:focus,
-  &:hover,
-  &:active {
+  &:hover:not([disabled]),
+  &:active:not([disabled]) {
     color: ${({ theme }) => theme.color.pink };
     background-color: ${({ theme }) => theme.color.white};
   }
+
+  &:disabled {
+    opacity: 0.1;
+  }
+`;
+
+const ProductPropertyWrapper  = styled.div`
+  min-height: 140px;
+  margin-bottom: 15px;
+`;
+
+const ProductPropertyList = styled.dl`
+  display: flex;
+  justify-content: space-between;
+
+  min-height: 20px;
+  margin: 0 5px;
+`;
+
+const ProductPropertyDotting = styled.span`
+  margin: 0 5px;
+  margin-bottom: 5px;
+  flex-grow: 1;
+
+  border-bottom: ${({ theme }) => `2px dotted ${theme.color.darkBlack }`};
+`;
+
+const productPropertyDefinition = styled.dd`
+  margin: 0;
 `;
 
 export {
@@ -176,4 +212,9 @@ export {
   ButtonWrapper,
   AddToBasketButton,
   ProductDescription,
+  ModalImgBlock,
+  ProductPropertyList,
+  ProductPropertyDotting,
+  productPropertyDefinition,
+  ProductPropertyWrapper,
 }

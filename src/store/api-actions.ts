@@ -1,19 +1,18 @@
 import { createAsyncThunk} from '@reduxjs/toolkit';
 import { AxiosResponseHeaders } from 'axios';
-import { ApiRoutes, LoadingStatus, QueryRoutes, QueryValues, ServerEntities } from 'constants/general.const';
+import { ApiRoutes, LoadingStatus, ONE, QueryRoutes, QueryValues, ServerEntities } from 'constants/general.const';
 import { ApiAction, NameSpace } from 'constants/store.const';
-import { CategoryType, FetchProductType, ImageServerType, ProductIdRange, ProductServerType, StockPricesServerType } from 'types/global-types';
+import { CategoryType, FetchProductType, ImageServerType, ProductIdRange, ProductServerType, ProductVarListServerType, ProductVarPropertyListServerType, ProductVarPropertyType, StockPricesServerType } from 'types/global-types';
 import { GeneralApiConfig } from 'types/store.type';
 import GeneralUtils from 'utils/general-utils';
-import { addCategories, addImages, addProducts, addStockPrices } from './actions';
-import { setImageQueryRange, setImageStatus, setProductStatus, setStockPriceQueryRange, setStockPriceStatus } from './status-data/status-data';
+import { addCategories, addImages, addProducts, addProductVarList, addProductVarProperty, addProductVarPropertyList, addStockPrices } from './actions';
+import { setImageQueryRange, setImageStatus, setProductStatus, setProductVarPropertyListStatus, setProductVarPropertyStatus, setStockPriceQueryRange, setStockPriceStatus } from './status-data/status-data';
 
 export const fetchCategories = createAsyncThunk<void, void, GeneralApiConfig>(
   ApiAction.FetchCategories,
   async (_arg, {dispatch, extra: api}) => {
     try{
       const {data} = await api.get<CategoryType[]>(ApiRoutes.Categories);
-      console.log()
       dispatch(addCategories(data));
     } catch (error) {
       throw error;
@@ -174,92 +173,51 @@ export const fetchStockPrices = createAsyncThunk<void, ProductIdRange, GeneralAp
   }
 );
 
-// export const fetchCombinedData = createAsyncThunk<void, ProductIdRange, GeneralApiConfig>(
-//   ApiAction.FetchCombinedData,
-//   async (arg, {dispatch, extra: api}) => {
-//     const {idList, isExtraFetchCall} = arg;
-//     try{
-//       if(idList.length === 0) {
-//         return;
-//       }
+export const fetchProductVarList = createAsyncThunk<void, number, GeneralApiConfig>(
+  ApiAction.FetchProductVarList,
+  async (prodVarId, {dispatch, extra: api}) => {
+    try{
+      const {data} = await api.get<ProductVarListServerType[]>(ApiRoutes.ProdVarList, {
+        params: {[QueryRoutes.Filter]: QueryValues.FilterByOne(ServerEntities.ProdVarId, prodVarId)},
+      });
 
-//       let imagesData;
-//       let stockPriceData;
+      dispatch(addProductVarList(data));
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
-//       const [rangeStart, rangeEnd] = [idList[0], idList.at(-1)]
+export const fetchProductVarProperty = createAsyncThunk<void, number[], GeneralApiConfig>(
+  ApiAction.FetchProductVarProperty,
+  async (prodVarIds, {dispatch, extra: api}) => {
+    try{
+      const sortedIds = prodVarIds.slice().sort((valueA, valueB) => valueA - valueB);
+      const {data} = await api.get<ProductVarPropertyType[]>(ApiRoutes.ProdVarProp, {
+        params: {[QueryRoutes.Range]: GeneralUtils.correctRangeForRangeFetch(sortedIds[0], sortedIds.at(-ONE))},
+      });
 
-//       if(rangeEnd && !isExtraFetchCall) {
-//         imagesData =  api.get<ImageServerType[]>(ApiRoutes.Images, {
-//           params: {[QueryRoutes.Filter]: QueryValues.FilterByMany(ServerEntities.ProductId, idList)}
-//         });
+      dispatch(addProductVarProperty(data));
+      dispatch(setProductVarPropertyStatus(LoadingStatus.Succeeded));
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 
-//         stockPriceData =  api.get<StockPricesServerType[]>(ApiRoutes.StockPrices, {
-//           params: {[QueryRoutes.Filter]: QueryValues.FilterByMany(ServerEntities.ProductId, idList)}
-//         });
-//       } else {
-//         imagesData =  api.get<ImageServerType[]>(ApiRoutes.Images, {
-//           params: {[QueryRoutes.Filter]: QueryValues.FilterByOne(ServerEntities.ProductId, rangeStart)}
-//         });
+export const fetchProductVarPropertyList = createAsyncThunk<void, number, GeneralApiConfig>(
+  ApiAction.FetchProductVarPropList,
+  async (prodVarPropListId, {dispatch, extra: api}) => {
+    try{
+      const {data} = await api.get<ProductVarPropertyListServerType[]>(ApiRoutes.ProdVarPropList, {
+        params: {[QueryRoutes.Filter]: QueryValues.FilterByOne(ServerEntities.ProdVarPropId, prodVarPropListId)},
+      });
 
-//         stockPriceData =  api.get<StockPricesServerType[]>(ApiRoutes.StockPrices, {
-//           params: {[QueryRoutes.Filter]: QueryValues.FilterByOne(ServerEntities.ProductId, rangeStart)}
-//         });
-//       }
+      dispatch(addProductVarPropertyList(data));
+      dispatch(setProductVarPropertyListStatus(LoadingStatus.Succeeded));
 
-//       if(rangeEnd && isExtraFetchCall) {
-//         imagesData =  api.get<ImageServerType[]>(ApiRoutes.Images, {
-//           params: {
-//             [QueryRoutes.Filter]: QueryValues.FilterByMany(ServerEntities.ProductId, idList),
-//             [QueryRoutes.Range]: QueryValues.Range(ExtraFetchValues.rangeStart, ExtraFetchValues.rangeEnd),
-//           }
-//         });
-
-//         stockPriceData =  api.get<StockPricesServerType[]>(ApiRoutes.StockPrices, {
-//           params: {
-//             [QueryRoutes.Filter]: QueryValues.FilterByMany(ServerEntities.ProductId, idList),
-//             [QueryRoutes.Range]: QueryValues.Range(ExtraFetchValues.rangeStart, ExtraFetchValues.rangeEnd),
-//           }
-//         });
-//       } else if(isExtraFetchCall) {
-//         imagesData =  api.get<ImageServerType[]>(ApiRoutes.Images, {
-//           params: {
-//             [QueryRoutes.Filter]: QueryValues.FilterByOne(ServerEntities.ProductId, rangeStart),
-//             [QueryRoutes.Range]: QueryValues.Range(ExtraFetchValues.rangeStart, ExtraFetchValues.rangeEnd),
-//           }
-//         });
-
-//         stockPriceData =  api.get<StockPricesServerType[]>(ApiRoutes.StockPrices, {
-//           params: {
-//             [QueryRoutes.Filter]: QueryValues.FilterByOne(ServerEntities.ProductId, rangeStart),
-//             [QueryRoutes.Range]: QueryValues.Range(ExtraFetchValues.rangeStart, ExtraFetchValues.rangeEnd),
-//           }
-//         });
-//       }
-
-//       const [responseImages, responseStockPrice] = await Promise.all([imagesData, stockPriceData]);
-
-//       const contentRangeImage = GeneralUtils.setupNextFetch(responseImages.headers as unknown as AxiosResponseHeaders);
-//       const contentRangeStock = GeneralUtils.setupNextFetch(responseStockPrice.headers as unknown as AxiosResponseHeaders);
-
-//       dispatch(addImages(responseImages.data));
-//       dispatch(addStockPrices(responseStockPrice.data));
-
-//       if(contentRangeImage) {
-//         dispatch(setImageQueryRange(contentRangeImage));
-//         dispatch(fetchImages({idList, isExtraFetchCall: true}));
-
-//       } else if (contentRangeStock) {
-//         dispatch(setStockPriceQueryRange(contentRangeStock));
-//         dispatch(fetchStockPrices({idList, isExtraFetchCall: true}));
-
-//       } else if (contentRangeImage && contentRangeStock) {
-//         dispatch(setImageQueryRange(contentRangeImage));
-//         dispatch(setStockPriceQueryRange(contentRangeStock));
-
-//         dispatch(fetchCombinedData({idList, isExtraFetchCall: true}));
-//       }
-//     } catch (error) {
-//       throw error;
-//     }
-//   }
-// );
+    } catch (error) {
+      throw error;
+    }
+  }
+);

@@ -1,16 +1,16 @@
-import { NonApiAction, StoreNameSpace } from "constants/store.const";
+import { NonApiAction, OrmNameSpace } from "constants/store.const";
 import Model, { attr, ModelType, oneToOne, Session } from "redux-orm";
 import { ActionType, ImageServerType } from "types/global-types";
 import GeneralUtils from "utils/general-utils";
 
 export class Images extends Model {
-  static modelName = StoreNameSpace.Images;
+  static modelName = OrmNameSpace.Images;
   static fields = {
     id: attr(),
     name: attr(),
     imageUrl: attr(),
     productId: oneToOne({
-      to: StoreNameSpace.Products,
+      to: OrmNameSpace.Products,
       as: 'productInfo',
       relatedName: 'image'
     }),

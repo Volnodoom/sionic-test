@@ -1,9 +1,9 @@
-import { NonApiAction, StoreNameSpace } from "constants/store.const";
+import { NonApiAction, OrmNameSpace } from "constants/store.const";
 import Model, { attr, ModelType, Session } from "redux-orm";
 import { ActionType, CategoryType } from "types/global-types";
 
 export class Categories extends Model {
-  static modelName = StoreNameSpace.Categories;
+  static modelName = OrmNameSpace.Categories;
   static fields = {
     id: attr(),
     name: attr(),

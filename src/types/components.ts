@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from "react";
+
 export type ButtonProps = {
   $back?: string,
   $color?: string,
@@ -5,6 +7,11 @@ export type ButtonProps = {
   $padding?: string,
   $radius?: string,
   $border?: string,
+  disabled?: boolean,
+}
+
+export type InputModalProps = {
+  onChange?: ChangeEventHandler<HTMLInputElement> | undefined
 }
 
 type ParseInt<T extends `text${number}`> =
@@ -59,4 +66,8 @@ export type ButtonTypesProp = {
 
 export type ModalProp = {
   isActive?: boolean,
+}
+
+export interface ObjectWithIdType {
+  id: number,
 }

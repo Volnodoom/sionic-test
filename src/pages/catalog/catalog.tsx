@@ -4,11 +4,11 @@ import Card from "../../components/blocks/card/card";
 import Filtration from "../../components/blocks/filtration/filtration";
 import ModalAddToBasket from "components/blocks/modal-add-to-basket/modal-add-to-backet";
 import { useSelector } from "react-redux";
-import * as selector from "store/selectors/selectors";
+import * as selector from "store/orm-modules-data/orm.selectors";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "hooks/useAppDispatch";
 import { fetchImages, fetchProducts, fetchStockPrices } from "store/api-actions";
-import { LoadingStatus, MAIN_URL, ONE, UPLOADING_STEP } from "constants/general.const";
+import { LoadingStatus, ONE, UPLOADING_STEP } from "constants/general.const";
 import {  ImageClientType, ProductClientType, StockPricesClientType } from "types/global-types";
 import { setImageStatus, setProductStatus, setStockPriceStatus } from "store/status-data/status-data";
 import GeneralUtils from "utils/general-utils";
@@ -41,7 +41,6 @@ const Catalog = () => {
   const isDataReady = (imageList.length > 0) && (stockPriceList.length > 0) && (productList.length > 0);
 
   useEffect(() => {
-    dispatch(setProductStatus(LoadingStatus.Loading));
     dispatch(fetchProducts(shownItemsRange));
   }, [dispatch, shownItemsRange]);
 
@@ -54,9 +53,13 @@ const Catalog = () => {
       dispatch(fetchImages({idList: idProductList, isExtraFetchCall: false}));
       dispatch(fetchStockPrices({idList: idProductList, isExtraFetchCall: false}));
     }
-  }, [idProductList, dispatch]);
+  }, [idProductList, shownItemsRange, dispatch]);
 
   const handleShowMoreClick = () => {
+    dispatch(setProductStatus(LoadingStatus.Idle));
+    dispatch(setImageStatus(LoadingStatus.Idle));
+    dispatch(setStockPriceStatus(LoadingStatus.Idle));
+
     setShownItemsRange((prevValue) => ({
       rangeStart: prevValue.rangeEnd + ONE,
       rangeEnd: prevValue.rangeEnd + UPLOADING_STEP,
@@ -79,8 +82,9 @@ const Catalog = () => {
               <Card
                 setModal={setIsModalActive}
                 title={line.name}
+                productId={productId}
                 imageUrl={imageList.find((img) => img.productId === productId)?.imageUrl as string}
-                alt={`${MAIN_URL}${imageList.find((img) => img.productId === productId)?.name}`}
+                alt={imageList.find((img) => img.productId === productId)?.name || ''}
                 price={GeneralUtils.getMinimalPrice(stockPriceList, productId)}
                 key={line.id}
               />

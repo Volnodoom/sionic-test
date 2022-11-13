@@ -5,6 +5,7 @@ export const UPLOADING_STEP = 16;
 export const SERVER_MAX_OUTPUT = 50;
 export const CONTENT_RANGE = 'content-range';
 export const ONE = 1;
+export const EMPTY = 'EMPTY';
 export const LOCAL_RU = 'ru-RU';
 
 
@@ -29,6 +30,10 @@ export const ApiRoutes = {
   OneImage: (id: number) => `productImages/${id}`,
   StockPrices: 'productVariations',
   OneStockPrice: (id: number) => `ProductVariations/${id}`,
+  ProdVarList: 'productVariationPropertyValues',
+  OneProdVarList: (id: number) => `productVariationPropertyValues/${id}`,
+  ProdVarPropList: 'ProductVariationPropertyListValues',
+  ProdVarProp: 'ProductVariationProperties',
 } as const;
 
 export enum QueryRoutes {
@@ -46,7 +51,7 @@ export const QueryValues = {
   SortIncrease: (serverEntity: string) => `[${serverEntity}, ASC]`,
   SortDecrease: (serverEntity: string) => `[${serverEntity}, DESC]`,
 
-  // accepts array like follow: range=[0,24]
+  // accepts array like follow: range=[0,24] first it must use Utile for general request
   Range: (rangeStart: number, rangeEnd: number) => `[${rangeStart},${rangeEnd}]`,
 } as const;
 
@@ -59,6 +64,9 @@ export enum ServerEntities {
   Description = 'description',
   Stock = 'stock',
   Price = 'price',
+  ProdVarId = 'product_variation_id',
+  ProdVarPropId = 'product_variation_property_id',
+  ProdVarPropList = 'product_variation_property_list_value_id',
 }
 
 export enum LoadingStatus {

@@ -75,3 +75,56 @@ export type SetupNextFetchType = {
   contentRangeStart: number,
   contentRangeEnd: number,
 } | null;
+
+export type ProductVarListServerType = {
+  id: number,
+  'product_variation_id': number,
+  'product_variation_property_id': number,
+  'value_string': string | null,
+  'value_int': number | null,
+  'value_float': string | null,
+  'product_variation_property_list_value_id': number | null,
+}
+
+export type ProductVarListClientType = {
+  id: number,
+  prodVarId: number,
+  prodVarPropId: number,
+  valueString: string | null,
+  valueInt: number | null,
+  valueFloat: string | null,
+  prodVarPropListId: number | null,
+}
+
+export type BasicProductInfoType = {
+  product: ProductClientType,
+  images: string [],
+  stockPrise: StockPricesClientType[],
+};
+
+export type FullUserProductInfoType = {
+  product: ProductClientType,
+  stockPrise: StockPricesClientType,
+  variationNumber: number,
+  propertyList: ProductVarListClientType[],
+};
+
+export type ProductVarPropertyListServerType = {
+  id: number,
+  'product_variation_property_id': number,
+  title: string,
+  value: string,
+};
+
+export type ProductVarPropertyListClientType = {
+  id: number,
+  productVarPropertyId: number,
+  title: string,
+  value: string,
+};
+
+export type ProductVarPropertyType = {
+  id: number,
+  name: string,
+  type: number,
+};

@@ -1,5 +1,7 @@
 import { LOCAL_RU, MAIN_URL } from "constants/general.const";
-import { Dispatch } from "react";
+import { useAppDispatch } from "hooks/useAppDispatch";
+import { Dispatch, memo } from "react";
+import { setSelectedProduct } from "store/status-data/status-data";
 import GeneralUtils from "utils/general-utils";
 import * as S from "./card.style";
 
@@ -9,18 +11,26 @@ type CardProps = {
   imageUrl: string,
   alt: string,
   price: number,
+  productId: number,
 };
 
 const Card = (props: CardProps) => {
+  const dispatch = useAppDispatch();
+
   const {
     setModal,
     title,
     imageUrl,
     alt,
     price,
+    productId,
   } = props;
 
-  const handleAddToBasketClick = () => setModal(true);
+
+  const handleAddToBasketClick = () => {
+    setModal(true);
+    dispatch(setSelectedProduct(productId));
+  };
 
   return(
     <S.CardBox>
@@ -44,4 +54,4 @@ const Card = (props: CardProps) => {
   )
 }
 
-export default Card;
+export default memo(Card);

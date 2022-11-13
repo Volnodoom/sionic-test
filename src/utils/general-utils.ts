@@ -1,7 +1,7 @@
 import { AxiosResponseHeaders } from "axios";
-import { CONTENT_RANGE, ONE, SERVER_MAX_OUTPUT } from "constants/general.const";
-import { ColorRange } from "types/components"
-import { ImageClientType, ImageServerType, ProductClientType, ProductServerType, SetupNextFetchType, StockPricesClientType, StockPricesServerType } from "types/global-types";
+import { CONTENT_RANGE, ONE, QueryValues, SERVER_MAX_OUTPUT } from "constants/general.const";
+import { ColorRange, ObjectWithIdType } from "types/components"
+import { ImageClientType, ImageServerType, ProductClientType, ProductServerType, ProductVarListClientType, ProductVarListServerType, ProductVarPropertyListClientType, ProductVarPropertyListServerType, SetupNextFetchType, StockPricesClientType, StockPricesServerType } from "types/global-types";
 
 class GeneralUtils {
 	static getRandomPositiveInteger = function (valueA: number, valueB: number) {
@@ -47,6 +47,28 @@ class GeneralUtils {
     }
   }
 
+  static adaptClientProductVariationList = function (data: ProductVarListServerType): ProductVarListClientType {
+    const checkValue = <T>(value: T | null) => value ? value : undefined;
+    return {
+      id: data.id,
+      prodVarId: data['product_variation_id'],
+      prodVarPropId: data['product_variation_property_id'],
+      valueString: checkValue(data['value_string']),
+      valueInt: checkValue(data['value_int']),
+      valueFloat: checkValue(data['value_float']),
+      prodVarPropListId: checkValue(data['product_variation_property_list_value_id']),
+    }
+  }
+
+  static adaptClientProductVarProperty = function (data: ProductVarPropertyListServerType): ProductVarPropertyListClientType {
+    return {
+      id: data.id,
+      productVarPropertyId: data['product_variation_property_id'],
+      title: data.title,
+      value: data.value,
+    }
+  }
+
   static setupNextFetch = function (responseHead: AxiosResponseHeaders): SetupNextFetchType {
     const text = String(responseHead[CONTENT_RANGE]);
     const [startValue, shiftedValue, totalValue] = [...text.matchAll(/\d{1,}/ig)];
@@ -72,6 +94,14 @@ class GeneralUtils {
     const relatedValueList = stockPriceList.filter((priceData) => priceData.productId === productId);
     const sortDecreaseData = relatedValueList.slice().sort((valueA, valueB) => valueA.price - valueB.price);
     return sortDecreaseData[0].price;
+  }
+
+  static correctRangeForRangeFetch = function (startNumber: number, endNumber: number) {
+    return QueryValues.Range(startNumber - ONE, endNumber - ONE);
+  }
+
+  static findDataWithId = function<T extends ObjectWithIdType> (array: T[] , id: number) {
+    return array.find((line) => line.id === id);
   }
 }
 
